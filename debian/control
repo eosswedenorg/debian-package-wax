@@ -1,0 +1,13 @@
+Source: wax
+Section: devel
+Priority: optional
+Maintainer: Henrik Hautakoski <henrik@eossweden.org>
+Build-Depends: debhelper (>= 11), git
+
+Package: wax
+Section: devel
+Priority: optional
+Depends: libc6, libgcc1, libssl1.1, libicu60, libstdc++6, libtinfo5, zlib1g, libusb-1.0-0, libcurl3-gnutls
+Architecture: amd64
+Homepage: https://github.com/cc32d9/wax2.0
+Description: Software for the wax network

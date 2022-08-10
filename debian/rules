@@ -1,0 +1,17 @@
+#!/usr/bin/make -f
+
+DISTRIBUTION = $(shell sed -n "s/^VERSION_CODENAME=//p" /etc/os-release)
+VERSION = $(shell dpkg-parsechangelog -SVersion)
+PACKAGEVERSION = $(VERSION)~$(DISTRIBUTION)0
+BUILD_ARGS = -i/opt/wax/v$(VERSION) -P
+
+%:
+	dh $@
+
+build:
+	./bootstrap.sh "https://github.com/cc32d9/wax2.0" "v$(VERSION)"
+	# Compile
+	cd upstream; ./wax_build.sh -y $(BUILD_ARGS)
+
+override_dh_gencontrol:
+	dh_gencontrol -- -v$(PACKAGEVERSION)
